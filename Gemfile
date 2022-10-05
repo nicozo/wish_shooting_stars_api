@@ -36,6 +36,12 @@ group :development, :test do
 
   # デバッグ用 Doc: https://github.com/deivid-rodriguez/pry-byebug/
   gem 'pry-byebug', '~> 3.10', '>= 3.10.1'
+
+  # Rails Rspec Doc: https://github.com/rspec/rspec-rails/
+  gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
+
+  # FactoryBot Doc: https://github.com/thoughtbot/factory_bot_rails/
+  gem 'factory_bot_rails', '~> 6.2'
 end
 
 group :development do
