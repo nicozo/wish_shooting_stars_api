@@ -30,6 +30,19 @@ module Api
     # データベースから日付・時刻を取り出した際のタイムゾーン
     config.active_record.default_timezone = :local
 
+    # i18nで使われるデフォルトのロケールファイルを指定
+    # 日本語化
+    config.i18n.default_locale = :ja
+
+    # Zeitwerk有効時false推奨
+    config.add_autoload_paths_to_load_path = false
+
+    config.generators do |g|
+      #testファイルの自動生成を不可
+      g.test_framework :rspec
+      g.skip_routes true
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
