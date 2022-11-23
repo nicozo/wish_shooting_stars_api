@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :hello, only: %i[index]
-      resources :wishes, only: %i[index create]
+      resources :wishes, only: %i[index create update]
     end
   end
 end
