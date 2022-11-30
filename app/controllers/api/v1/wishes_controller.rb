@@ -2,7 +2,7 @@ class Api::V1::WishesController < ApplicationController
   before_action :set_wish, only: %i[update]
 
   def index
-    wishes = Wish.successful_wishes
+    wishes = Wish.successful_wishes(100)
 
     render json: wishes
   end
