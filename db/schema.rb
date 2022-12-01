@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_23_035131) do
+ActiveRecord::Schema.define(version: 2022_12_01_041909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "wish_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["wish_id"], name: "index_likes_on_wish_id"
+  end
 
   create_table "wishes", force: :cascade do |t|
     t.string "title", null: false
@@ -23,4 +30,5 @@ ActiveRecord::Schema.define(version: 2022_11_23_035131) do
     t.integer "score", default: 0, null: false
   end
 
+  add_foreign_key "likes", "wishes"
 end
