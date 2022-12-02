@@ -12,6 +12,6 @@ class Api::V1::LikesController < ApplicationController
   private
 
   def likes_params
-    params.require(:like)permit(:wish_id)
+    params.require(:like).permit(:wish_id)
   end
 end

@@ -5,4 +5,8 @@ class Wish < ApplicationRecord
   validates :title, presence: true, length: { maximum: 15 }, format: { with: VALID_WISH_REGEX }
 
   scope :successful_wishes, -> (number) { where('score = ?', number ).order(created_at: :desc) }
+
+  def likes_count
+    likes.length
+  end
 end
