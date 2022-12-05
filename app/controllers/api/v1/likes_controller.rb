@@ -1,19 +1,19 @@
 class Api::V1::LikesController < ApplicationController
   def create
     wish = Wish.find(params[:like][:wish_id])
-    already_like = Like.find_by(ip: request.remote_ip, wish_id: wish.id)
 
-    if already_like
-      render json: already_like, status: :bad_request
+    if cookies[:like_wish_id].nil?
+      cookies.permanent[:like_wish_id] = wish.id.to_s
     else
-      like = Like.new(likes_params)
-      like.ip = request.remote_ip
+      cookies.permanent[:like_wish_id] = cookies.permanent[:like_wish_id] + ',' + wish.id.to_s
+    end
 
-      if like.save
-        render json: like
-      else
-        render json: like.errors, status: :bad_request
-      end
+    like = Like.new(likes_params)
+
+    if like.save
+      render json: like
+    else
+      render json: like.errors, status: :bad_request
     end
   end
 
