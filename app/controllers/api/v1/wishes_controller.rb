@@ -2,9 +2,9 @@ class Api::V1::WishesController < ApplicationController
   before_action :set_wish, only: %i[update]
 
   def index
-    wishes = Wish.all.order(created_at: :desc)
+    wishes = Wish.all.includes(association_tables).order(created_at: :desc)
 
-    render json: wishes
+    render json: wishes.as_json(only: %i[id title score], methods: %i[likes_count])
   end
 
   def create
@@ -37,5 +37,9 @@ class Api::V1::WishesController < ApplicationController
 
   def set_wish
     @wish = Wish.find(params[:id])
+  end
+
+  def association_tables
+    %i[likes]
   end
 end
